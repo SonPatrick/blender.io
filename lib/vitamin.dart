@@ -12,8 +12,8 @@ class _VitaminState extends State<Vitamin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Vitamina"),
-        backgroundColor: Colors.purple,
+        title: const Text("Vitamina", style: TextStyle(color: Colors.black87)),
+        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: Container(color: Colors.amber),
