@@ -126,7 +126,7 @@ class _StartState extends State<Start>
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(130.0),
           child: AppBar(
-            title: const Text("iNutri"),
+            title: const Text("Blender"),
             centerTitle: true,
             leading: IconButton(
                 icon: const Icon(LineIcons.alternateRedo),
@@ -145,7 +145,7 @@ class _StartState extends State<Start>
                   top: 0,
                   right: 0,
                   value: "${_added.length}",
-                  child: const Icon(LineIcons.conciergeBell, size: 30),
+                  child: const Icon(LineIcons.blender, size: 30),
                 ),
               ),
             ],
