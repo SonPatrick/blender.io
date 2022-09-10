@@ -12,6 +12,7 @@ class Start extends StatefulWidget {
   const Start({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _StartState createState() => _StartState();
 }
 
@@ -27,30 +28,30 @@ class _StartState extends State<Start>
   Widget randomAnimation({required int index, required Widget child}) {
     return (index % 2 == 0)
         ? FadeInRight(
-            child: child,
             duration: Duration(milliseconds: 120 + (50 * index)),
             delay: Duration(milliseconds: 120 + (50 * index)),
             manualTrigger: false,
+            child: child,
           )
         : (index % 3 == 0)
             ? FadeInRight(
-                child: child,
                 duration: Duration(milliseconds: 120 + (50 * index)),
                 delay: Duration(milliseconds: 120 + (50 * index)),
                 manualTrigger: false,
+                child: child,
               )
             : (index % 4 == 0)
                 ? FadeInRight(
-                    child: child,
                     duration: Duration(milliseconds: 120 + (50 * index)),
                     delay: Duration(milliseconds: 120 + (50 * index)),
                     manualTrigger: false,
+                    child: child,
                   )
                 : FadeInRight(
-                    child: child,
                     duration: Duration(milliseconds: 120 + (50 * index)),
                     delay: Duration(milliseconds: 120 + (50 * index)),
                     manualTrigger: false,
+                    child: child,
                   );
   }
 
@@ -141,10 +142,10 @@ class _StartState extends State<Start>
                 },
                 icon: Badge(
                   color: Colors.amber,
-                  child: const Icon(LineIcons.conciergeBell, size: 30),
                   top: 0,
                   right: 0,
                   value: "${_added.length}",
+                  child: const Icon(LineIcons.conciergeBell, size: 30),
                 ),
               ),
             ],
@@ -198,10 +199,6 @@ class _StartState extends State<Start>
               index: index,
               child: Dismissible(
                 key: UniqueKey(),
-                child: CardFruit(
-                  fruit: _fruitsSearch.elementAt(index),
-                  width: MediaQuery.of(context).size.width,
-                ),
                 direction: DismissDirection.horizontal,
                 onDismissed: (direction) => _onDismiss(direction, index),
                 secondaryBackground: Container(
@@ -215,6 +212,10 @@ class _StartState extends State<Start>
                   padding: const EdgeInsets.only(left: 20.0),
                   color: Colors.redAccent,
                   child: const Icon(LineIcons.info, color: Colors.white),
+                ),
+                child: CardFruit(
+                  fruit: _fruitsSearch.elementAt(index),
+                  width: MediaQuery.of(context).size.width,
                 ),
               ),
             );

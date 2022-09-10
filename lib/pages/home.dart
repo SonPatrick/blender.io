@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:blender/pages/start.dart';
 import 'package:line_icons/line_icons.dart';
@@ -28,7 +30,7 @@ class _HomeState extends State<Home> {
         currentIndex: _selectedIndex,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(LineIcons.fruitApple), label: "Frutas"),
+              icon: Icon(LineIcons.blender), label: "Vitamina"),
           BottomNavigationBarItem(
               icon: Icon(LineIcons.carrot), label: "Legumes"),
           BottomNavigationBarItem(icon: Icon(LineIcons.info), label: "Sobre"),

@@ -6,6 +6,7 @@ class Detail extends StatefulWidget {
   const Detail({Key? key, required this.frutas}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _DetailState createState() => _DetailState();
 }
 
