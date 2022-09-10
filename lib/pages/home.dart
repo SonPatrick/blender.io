@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inutri/pages/start.dart';
+import 'package:blender/pages/start.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Home extends StatefulWidget {
@@ -27,8 +27,10 @@ class _HomeState extends State<Home> {
         onTap: _ontTap,
         currentIndex: _selectedIndex,
         items: const [
-          BottomNavigationBarItem(icon: Icon(LineIcons.fruitApple), label: "Frutas"),
-          BottomNavigationBarItem(icon: Icon(LineIcons.carrot), label: "Legumes"),
+          BottomNavigationBarItem(
+              icon: Icon(LineIcons.fruitApple), label: "Frutas"),
+          BottomNavigationBarItem(
+              icon: Icon(LineIcons.carrot), label: "Legumes"),
           BottomNavigationBarItem(icon: Icon(LineIcons.info), label: "Sobre"),
         ],
       ),

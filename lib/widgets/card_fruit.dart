@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inutri/models/fruit.dart';
+import 'package:blender/models/fruit.dart';
 
 class CardFruit extends StatefulWidget {
   final Fruit fruit;
@@ -7,7 +7,11 @@ class CardFruit extends StatefulWidget {
   final double? height;
   final double? size;
   const CardFruit(
-      {Key? key, this.width = 100, this.height = 100, required this.fruit, this.size = 50})
+      {Key? key,
+      this.width = 100,
+      this.height = 100,
+      required this.fruit,
+      this.size = 50})
       : super(key: key);
 
   @override

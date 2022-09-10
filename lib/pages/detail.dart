@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inutri/models/fruit.dart';
+import 'package:blender/models/fruit.dart';
 
 class Detail extends StatefulWidget {
   final List<Fruit> frutas;

@@ -1,4 +1,4 @@
-import 'package:inutri/models/fruit.dart';
+import 'package:blender/models/fruit.dart';
 
 List<Fruit> fruits = const [
   Fruit(
@@ -11,7 +11,10 @@ List<Fruit> fruits = const [
       image: "assets/fruits/brocolis.png",
       vitamina:
           'cálcio, potássio, ferro, zinco, sódio, vitaminas A, C, B1, B2, B6, K, fibra alimentar.'),
-  Fruit(nome: "Kiwi", image: "assets/fruits/kiwi.png", vitamina: 'Fonte de fibras, proteínas'),
+  Fruit(
+      nome: "Kiwi",
+      image: "assets/fruits/kiwi.png",
+      vitamina: 'Fonte de fibras, proteínas'),
   Fruit(nome: "Laranja", image: "assets/fruits/laranja.png", vitamina: ''),
   Fruit(nome: "Limão", image: "assets/fruits/limao.png", vitamina: ''),
   Fruit(nome: "Maçã", image: "assets/fruits/maca.png", vitamina: ''),

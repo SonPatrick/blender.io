@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:inutri/pages/home.dart';
-import 'package:inutri/settings/ui_themes.dart';
+import 'package:blender/pages/home.dart';
+import 'package:blender/settings/ui_themes.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
