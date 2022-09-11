@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:blender/pages/vitamin.dart';
 import 'package:flutter/material.dart';
 import 'package:blender/pages/start.dart';
 import 'package:line_icons/line_icons.dart';
@@ -16,7 +17,7 @@ class _HomeState extends State<Home> {
 
   final List<Widget> _pages = [
     const Start(),
-    Container(color: Colors.orange),
+    const Vitamin(),
     Container(color: Colors.indigo),
   ];
 
