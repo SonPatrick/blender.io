@@ -2,21 +2,19 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:blender/data/list_fruit.dart';
 import 'package:blender/models/fruit.dart';
-import 'package:blender/pages/detail.dart';
 import 'package:blender/widgets/card_fruit.dart';
-import 'package:blender/widgets/custom/badge.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:searchfield/searchfield.dart';
 
-class Start extends StatefulWidget {
-  const Start({Key? key}) : super(key: key);
+class Fruits extends StatefulWidget {
+  const Fruits({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
   _StartState createState() => _StartState();
 }
 
-class _StartState extends State<Start>
+class _StartState extends State<Fruits>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   final TextEditingController _searchCtrl = TextEditingController();
   final ScrollController _controller = ScrollController(keepScrollOffset: true);
@@ -131,24 +129,24 @@ class _StartState extends State<Start>
             leading: IconButton(
                 icon: const Icon(LineIcons.alternateRedo),
                 onPressed: _loadList),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: ((context) => Detail(frutas: _added)),
-                    ),
-                  );
-                },
-                icon: Badge(
-                  color: Colors.amber,
-                  top: 0,
-                  right: 0,
-                  value: "${_added.length}",
-                  child: const Icon(LineIcons.blender, size: 30),
-                ),
-              ),
-            ],
+            // actions: [
+            //   IconButton(
+            //     onPressed: () {
+            //       Navigator.of(context).push(
+            //         MaterialPageRoute(
+            //           builder: ((context) => Detail(frutas: _added)),
+            //         ),
+            //       );
+            //     },
+            //     icon: Badge(
+            //       color: Colors.amber,
+            //       top: 0,
+            //       right: 0,
+            //       value: "${_added.length}",
+            //       child: const Icon(LineIcons.blender, size: 30),
+            //     ),
+            //   ),
+            // ],
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(kToolbarHeight),
               child: Container(
@@ -195,29 +193,10 @@ class _StartState extends State<Start>
           itemCount: _fruitsSearch.length,
           separatorBuilder: (ctx, index) => const Divider(height: 2),
           itemBuilder: (ctx, index) {
-            return randomAnimation(
-              index: index,
-              child: Dismissible(
-                key: UniqueKey(),
-                direction: DismissDirection.horizontal,
-                onDismissed: (direction) => _onDismiss(direction, index),
-                secondaryBackground: Container(
-                  alignment: Alignment.centerRight,
-                  padding: const EdgeInsets.only(right: 20.0),
-                  color: Colors.amber,
-                  child: const Icon(LineIcons.plus, color: Colors.white),
-                ),
-                background: Container(
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.only(left: 20.0),
-                  color: Colors.redAccent,
-                  child: const Icon(LineIcons.info, color: Colors.white),
-                ),
-                child: CardFruit(
-                  fruit: _fruitsSearch.elementAt(index),
-                  width: MediaQuery.of(context).size.width,
-                ),
-              ),
+            return CardFruit(
+              height: 120,
+              fruit: _fruitsSearch.elementAt(index),
+              width: MediaQuery.of(context).size.width,
             );
           },
         ),

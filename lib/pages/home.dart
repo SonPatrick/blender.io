@@ -2,7 +2,7 @@
 
 import 'package:blender/pages/vitamin.dart';
 import 'package:flutter/material.dart';
-import 'package:blender/pages/start.dart';
+import 'package:blender/pages/fruits.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
 
   final List<Widget> _pages = [
     const Vitamin(),
-    const Start(),
+    const Fruits(),
     Container(color: Colors.indigo),
     Container(color: Colors.indigo),
     Container(color: Colors.indigo),

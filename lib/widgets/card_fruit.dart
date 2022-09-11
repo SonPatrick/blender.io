@@ -23,6 +23,7 @@ class _CardFruitState extends State<CardFruit> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      visualDensity: VisualDensity.standard,
       leading: Image.asset(widget.fruit.image,
           fit: BoxFit.cover, height: widget.size, width: widget.size),
       title: Text(

@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:blender/pages/start.dart';
+import 'package:blender/pages/fruits.dart';
 import 'package:blender/pages/vitamin/fruit_model.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
@@ -39,9 +39,10 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        centerTitle: false,
         iconTheme: const IconThemeData(color: Color(0xFFF64209)),
         title: Text(
-          'Blender',
+          'Vitamina',
           style: Theme.of(context).textTheme.headline4?.copyWith(
                 fontSize: 32,
                 color: Colors.black,
@@ -106,7 +107,7 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
         child: GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Start()));
+                MaterialPageRoute(builder: (context) => const Fruits()));
           },
           child: DragTarget<Fruit>(
             builder: (context, candidateItems, rejectedItems) {
@@ -234,7 +235,7 @@ class MenuListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 5.0,
+      elevation: 2.0,
       borderRadius: BorderRadius.circular(20),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
