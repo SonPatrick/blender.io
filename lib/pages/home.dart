@@ -19,6 +19,8 @@ class _HomeState extends State<Home> {
     const Vitamin(),
     const Start(),
     Container(color: Colors.indigo),
+    Container(color: Colors.indigo),
+    Container(color: Colors.indigo),
   ];
 
   void _ontTap(int index) => setState(() => _selectedIndex = index);
@@ -35,8 +37,16 @@ class _HomeState extends State<Home> {
             label: "Vitamina",
           ),
           BottomNavigationBarItem(
-            icon: Icon(LineIcons.carrot),
-            label: "Legumes",
+            icon: Icon(LineIcons.fruitApple),
+            label: "Frutas",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(LineIcons.bookmark),
+            label: "Favoritos",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(LineIcons.hotjar),
+            label: "Dicas",
           ),
           BottomNavigationBarItem(
             icon: Icon(LineIcons.user),

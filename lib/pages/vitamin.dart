@@ -45,9 +45,6 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
 
   final GlobalKey _draggableKey = GlobalKey();
 
-  //TODO
-  void _removeDroppedItem(index) {}
-
   void _itemDroppedOnCustomerCart({
     required Item item,
     required Customer customer,
@@ -133,7 +130,7 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
       child: InkWell(
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Start()));
+              context, MaterialPageRoute(builder: (context) => const Start()));
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(
