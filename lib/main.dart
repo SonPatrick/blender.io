@@ -22,12 +22,12 @@ void main() async {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: const Color(0xfff8b002),
+        primaryColor: Colors.indigo,
         scaffoldBackgroundColor: Colors.white,
         backgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSwatch(brightness: Brightness.light),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color(0xfff8b002),
+          backgroundColor: Colors.orange,
           elevation: 0.5,
         ),
         appBarTheme: const AppBarTheme(
@@ -47,7 +47,7 @@ void main() async {
         ),
         snackBarTheme: const SnackBarThemeData(
           actionTextColor: Colors.black,
-          backgroundColor: Color(0xfff8b002),
+          backgroundColor: Colors.orange,
           behavior: SnackBarBehavior.floating,
           elevation: 1.5,
           contentTextStyle: TextStyle(
@@ -61,11 +61,11 @@ void main() async {
           headline6: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
         ),
         timePickerTheme: const TimePickerThemeData(
-          dayPeriodColor: Color(0xfff8b002),
+          dayPeriodColor: Colors.orange,
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.amber,
+          selectedItemColor: Colors.indigo,
           unselectedItemColor: Colors.black38,
           backgroundColor: Colors.white,
           elevation: 0.0,
