@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:blender/pages/detail.dart';
 import 'package:blender/pages/fruits.dart';
 import 'package:blender/pages/vitamin/fruit_model.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +108,7 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
         child: GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Fruits()));
+                MaterialPageRoute(builder: (context) => const Details()));
           },
           child: DragTarget<Fruit>(
             builder: (context, candidateItems, rejectedItems) {

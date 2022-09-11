@@ -1,43 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:blender/models/fruit.dart';
+import 'package:line_icons/line_icons.dart';
 
-class Detail extends StatefulWidget {
-  final List<Fruit> frutas;
-  const Detail({Key? key, required this.frutas}) : super(key: key);
+class Details extends StatefulWidget {
+  const Details({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _DetailState createState() => _DetailState();
+  State<Details> createState() => _DetailsState();
 }
 
-class _DetailState extends State<Detail> {
-  final _vitaminas = StringBuffer();
-
-  void _listVitaminas() {
-    setState(() {
-      for (var vitamina in widget.frutas) {
-        _vitaminas.write(vitamina.vitamina);
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    if (mounted) _listVitaminas();
-    super.initState();
-  }
-
+class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: (widget.frutas.isNotEmpty)
-            ? Column(
-                children: [
-                  Text(_vitaminas.toString()),
-                ],
-              )
-            : const Center(child: Text("Nenhuma fruta selecionada.")),
+        appBar: AppBar(title: const Text("Nome da fruta")),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 30),
+              Container(
+                height: 220,
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.only(right: 70),
+                decoration: const BoxDecoration(
+                  color: Colors.indigo,
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(25.0),
+                    topRight: Radius.circular(25.0),
+                  ),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        LineIcons.fruitApple,
+                        size: 75,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
