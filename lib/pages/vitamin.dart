@@ -1,3 +1,5 @@
+import 'package:animate_do/animate_do.dart';
+import 'package:blender/pages/start.dart';
 import 'package:flutter/material.dart';
 
 const List<Item> _items = [
@@ -39,19 +41,12 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
       imageProvider: const NetworkImage('https://flutter'
           '.dev/docs/cookbook/img-files/effects/split-check/Avatar1.jpg'),
     ),
-    Customer(
-      name: 'Nathan',
-      imageProvider: const NetworkImage('https://flutter'
-          '.dev/docs/cookbook/img-files/effects/split-check/Avatar2.jpg'),
-    ),
-    Customer(
-      name: 'Emilio',
-      imageProvider: const NetworkImage('https://flutter'
-          '.dev/docs/cookbook/img-files/effects/split-check/Avatar3.jpg'),
-    ),
   ];
 
   final GlobalKey _draggableKey = GlobalKey();
+
+  //TODO
+  void _removeDroppedItem(index) {}
 
   void _itemDroppedOnCustomerCart({
     required Item item,
@@ -65,113 +60,100 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F7F7),
-      appBar: _buildAppBar(),
-      body: _buildContent(),
-    );
-  }
-
-  PreferredSizeWidget _buildAppBar() {
-    return AppBar(
-      iconTheme: const IconThemeData(color: Color(0xFFF64209)),
-      title: Text(
-        'Order Food',
-        style: Theme.of(context).textTheme.headline4?.copyWith(
-              fontSize: 36,
-              color: const Color(0xFFF64209),
-              fontWeight: FontWeight.bold,
-            ),
-      ),
-      backgroundColor: const Color(0xFFF7F7F7),
-      elevation: 0,
-    );
-  }
-
-  Widget _buildContent() {
-    return Stack(
-      children: [
-        SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: _buildMenuList(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Color(0xFFF64209)),
+        title: Text(
+          'Blender',
+          style: Theme.of(context).textTheme.headline4?.copyWith(
+                fontSize: 32,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
               ),
-              _buildPeopleRow(),
-            ],
-          ),
         ),
-      ],
-    );
-  }
-
-  Widget _buildMenuList() {
-    return ListView.separated(
-      padding: const EdgeInsets.all(16.0),
-      itemCount: _items.length,
-      separatorBuilder: (context, index) {
-        return const SizedBox(
-          height: 12.0,
-        );
-      },
-      itemBuilder: (context, index) {
-        final item = _items[index];
-        return _buildMenuItem(
-          item: item,
-        );
-      },
-    );
-  }
-
-  Widget _buildMenuItem({
-    required Item item,
-  }) {
-    return LongPressDraggable<Item>(
-      data: item,
-      dragAnchorStrategy: pointerDragAnchorStrategy,
-      feedback: DraggingListItem(
-        dragKey: _draggableKey,
-        photoProvider: item.imageProvider,
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
-      child: MenuListItem(
-        name: item.name,
-        price: item.formattedTotalItemPrice,
-        photoProvider: item.imageProvider,
-      ),
-    );
-  }
-
-  Widget _buildPeopleRow() {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-        vertical: 20.0,
-      ),
-      child: Row(
-        children: _people.map(_buildPersonWithDropZone).toList(),
+      body: Stack(
+        children: [
+          SafeArea(
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(15.0),
+                    itemCount: _items.length,
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(
+                        height: 7.0,
+                      );
+                    },
+                    itemBuilder: (context, index) {
+                      final item = _items[index];
+                      return FadeInRight(
+                        duration: Duration(milliseconds: 120 + (50 * index)),
+                        delay: Duration(milliseconds: 120 + (50 * index)),
+                        manualTrigger: false,
+                        child: LongPressDraggable<Item>(
+                          data: item,
+                          dragAnchorStrategy: pointerDragAnchorStrategy,
+                          feedback: DraggingListItem(
+                            dragKey: _draggableKey,
+                            photoProvider: item.imageProvider,
+                          ),
+                          child: MenuListItem(
+                            name: item.name,
+                            price: item.formattedTotalItemPrice,
+                            photoProvider: item.imageProvider,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 20.0,
+                  ),
+                  child: Row(
+                    children: _people.map(_buildPersonWithDropZone).toList(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildPersonWithDropZone(Customer customer) {
     return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 6.0,
-        ),
-        child: DragTarget<Item>(
-          builder: (context, candidateItems, rejectedItems) {
-            return CustomerCart(
-              hasItems: customer.items.isNotEmpty,
-              highlighted: candidateItems.isNotEmpty,
-              customer: customer,
-            );
-          },
-          onAccept: (item) {
-            _itemDroppedOnCustomerCart(
-              item: item,
-              customer: customer,
-            );
-          },
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Start()));
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 6.0,
+          ),
+          child: DragTarget<Item>(
+            builder: (context, candidateItems, rejectedItems) {
+              return CustomerCart(
+                hasItems: customer.items.isNotEmpty,
+                highlighted: candidateItems.isNotEmpty,
+                customer: customer,
+              );
+            },
+            onAccept: (item) {
+              _itemDroppedOnCustomerCart(
+                item: item,
+                customer: customer,
+              );
+            },
+          ),
         ),
       ),
     );
@@ -195,11 +177,11 @@ class CustomerCart extends StatelessWidget {
     final textColor = highlighted ? Colors.white : Colors.black;
 
     return Transform.scale(
-      scale: highlighted ? 1.075 : 1.0,
+      scale: highlighted ? 1.0 : 1.0,
       child: Material(
         elevation: highlighted ? 8.0 : 4.0,
         borderRadius: BorderRadius.circular(22.0),
-        color: highlighted ? const Color(0xFFF64209) : Colors.white,
+        color: highlighted ? Colors.orange : Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 12.0,
@@ -245,7 +227,7 @@ class CustomerCart extends StatelessWidget {
                     ),
                     const SizedBox(height: 4.0),
                     Text(
-                      '${customer.items.length} item${customer.items.length != 1 ? 's' : ''}',
+                      '${customer.items.length} fruta${customer.items.length > 1 ? 's' : ''}',
                       style: Theme.of(context).textTheme.subtitle1!.copyWith(
                             color: textColor,
                             fontSize: 12.0,
@@ -279,7 +261,7 @@ class MenuListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 12.0,
+      elevation: 5.0,
       borderRadius: BorderRadius.circular(20),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -289,8 +271,8 @@ class MenuListItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: SizedBox(
-                width: 120,
-                height: 120,
+                width: 70,
+                height: 70,
                 child: Center(
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 100),
@@ -352,8 +334,8 @@ class DraggingListItem extends StatelessWidget {
         key: dragKey,
         borderRadius: BorderRadius.circular(12.0),
         child: SizedBox(
-          height: 150,
-          width: 150,
+          height: 100,
+          width: 100,
           child: Opacity(
             opacity: 0.85,
             child: Image(

@@ -16,8 +16,8 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const Start(),
     const Vitamin(),
+    const Start(),
     Container(color: Colors.indigo),
   ];
 
@@ -31,10 +31,17 @@ class _HomeState extends State<Home> {
         currentIndex: _selectedIndex,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(LineIcons.blender), label: "Vitamina"),
+            icon: Icon(LineIcons.blender),
+            label: "Vitamina",
+          ),
           BottomNavigationBarItem(
-              icon: Icon(LineIcons.carrot), label: "Legumes"),
-          BottomNavigationBarItem(icon: Icon(LineIcons.info), label: "Sobre"),
+            icon: Icon(LineIcons.carrot),
+            label: "Legumes",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(LineIcons.user),
+            label: "Perfil",
+          ),
         ],
       ),
     );
