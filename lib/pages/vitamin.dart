@@ -1,73 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:blender/pages/start.dart';
+import 'package:blender/pages/vitamin/fruit_model.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-
-const List<Item> _items = [
-  Item(
-    name: 'Spinach Pizza',
-    totalPriceCents: 1299,
-    uid: '1',
-    imageProvider: NetworkImage('https://flutter'
-        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg'),
-  ),
-  Item(
-    name: 'Veggie Delight',
-    totalPriceCents: 799,
-    uid: '2',
-    imageProvider: NetworkImage('https://flutter'
-        '.dev/docs/cookbook/img-files/effects/split-check/Food2.jpg'),
-  ),
-  Item(
-    name: 'Chicken Parmesan',
-    totalPriceCents: 1499,
-    uid: '3',
-    imageProvider: NetworkImage('https://flutter'
-        '.dev/docs/cookbook/img-files/effects/split-check/Food3.jpg'),
-  ),
-  Item(
-    name: 'Spinach Pizza',
-    totalPriceCents: 1299,
-    uid: '1',
-    imageProvider: NetworkImage('https://flutter'
-        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg'),
-  ),
-  Item(
-    name: 'Veggie Delight',
-    totalPriceCents: 799,
-    uid: '2',
-    imageProvider: NetworkImage('https://flutter'
-        '.dev/docs/cookbook/img-files/effects/split-check/Food2.jpg'),
-  ),
-  Item(
-    name: 'Chicken Parmesan',
-    totalPriceCents: 1499,
-    uid: '3',
-    imageProvider: NetworkImage('https://flutter'
-        '.dev/docs/cookbook/img-files/effects/split-check/Food3.jpg'),
-  ),
-  Item(
-    name: 'Spinach Pizza',
-    totalPriceCents: 1299,
-    uid: '1',
-    imageProvider: NetworkImage('https://flutter'
-        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg'),
-  ),
-  Item(
-    name: 'Veggie Delight',
-    totalPriceCents: 799,
-    uid: '2',
-    imageProvider: NetworkImage('https://flutter'
-        '.dev/docs/cookbook/img-files/effects/split-check/Food2.jpg'),
-  ),
-  Item(
-    name: 'Chicken Parmesan',
-    totalPriceCents: 1499,
-    uid: '3',
-    imageProvider: NetworkImage('https://flutter'
-        '.dev/docs/cookbook/img-files/effects/split-check/Food3.jpg'),
-  ),
-];
+import './vitamin/repository.dart' as repo;
 
 @immutable
 class Vitamin extends StatefulWidget {
@@ -78,6 +14,7 @@ class Vitamin extends StatefulWidget {
 }
 
 class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
+  final List<Fruit> _items = repo.fruits;
   final List<Customer> _people = [
     Customer(
       name: 'Makayla',
@@ -88,8 +25,8 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
 
   final GlobalKey _draggableKey = GlobalKey();
 
-  void _itemDroppedOnCustomerCart({
-    required Item item,
+  void _itemDroppedOnFruitCart({
+    required Fruit item,
     required Customer customer,
   }) {
     setState(() {
@@ -134,7 +71,7 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
                         duration: Duration(milliseconds: 120 + (50 * index)),
                         delay: Duration(milliseconds: 120 + (50 * index)),
                         manualTrigger: false,
-                        child: LongPressDraggable<Item>(
+                        child: LongPressDraggable<Fruit>(
                           data: item,
                           dragAnchorStrategy: pointerDragAnchorStrategy,
                           feedback: DraggingListItem(
@@ -171,16 +108,16 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Start()));
           },
-          child: DragTarget<Item>(
+          child: DragTarget<Fruit>(
             builder: (context, candidateItems, rejectedItems) {
-              return CustomerCart(
+              return FruitCart(
                 hasItems: customer.items.isNotEmpty,
                 highlighted: candidateItems.isNotEmpty,
                 customer: customer,
               );
             },
             onAccept: (item) {
-              _itemDroppedOnCustomerCart(
+              _itemDroppedOnFruitCart(
                 item: item,
                 customer: customer,
               );
@@ -192,8 +129,8 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
   }
 }
 
-class CustomerCart extends StatelessWidget {
-  const CustomerCart({
+class FruitCart extends StatelessWidget {
+  const FruitCart({
     super.key,
     required this.customer,
     this.highlighted = false,
@@ -233,19 +170,19 @@ class CustomerCart extends StatelessWidget {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 50,
                     child: Icon(
                       LineIcons.blender,
                       size: 50,
-                      color: Colors.black45,
+                      color: textColor,
                     ),
                   ),
                   const SizedBox(height: 8.0),
                   Text(
                     "segure e arraste as frutas para cá",
                     style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                          color: Colors.black45,
+                          color: textColor,
                           fontWeight:
                               hasItems ? FontWeight.normal : FontWeight.bold,
                         ),
@@ -385,32 +322,16 @@ class DraggingListItem extends StatelessWidget {
   }
 }
 
-@immutable
-class Item {
-  const Item({
-    required this.totalPriceCents,
-    required this.name,
-    required this.uid,
-    required this.imageProvider,
-  });
-  final int totalPriceCents;
-  final String name;
-  final String uid;
-  final ImageProvider imageProvider;
-  String get formattedTotalItemPrice =>
-      '\$${(totalPriceCents / 100.0).toStringAsFixed(2)}';
-}
-
 class Customer {
   Customer({
     required this.name,
     required this.imageProvider,
-    List<Item>? items,
+    List<Fruit>? items,
   }) : items = items ?? [];
 
   final String name;
   final ImageProvider imageProvider;
-  final List<Item> items;
+  final List<Fruit> items;
 
   String get formattedTotalItemPrice {
     final totalPriceCents =
