@@ -1,8 +1,51 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:blender/pages/start.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 const List<Item> _items = [
+  Item(
+    name: 'Spinach Pizza',
+    totalPriceCents: 1299,
+    uid: '1',
+    imageProvider: NetworkImage('https://flutter'
+        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg'),
+  ),
+  Item(
+    name: 'Veggie Delight',
+    totalPriceCents: 799,
+    uid: '2',
+    imageProvider: NetworkImage('https://flutter'
+        '.dev/docs/cookbook/img-files/effects/split-check/Food2.jpg'),
+  ),
+  Item(
+    name: 'Chicken Parmesan',
+    totalPriceCents: 1499,
+    uid: '3',
+    imageProvider: NetworkImage('https://flutter'
+        '.dev/docs/cookbook/img-files/effects/split-check/Food3.jpg'),
+  ),
+  Item(
+    name: 'Spinach Pizza',
+    totalPriceCents: 1299,
+    uid: '1',
+    imageProvider: NetworkImage('https://flutter'
+        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg'),
+  ),
+  Item(
+    name: 'Veggie Delight',
+    totalPriceCents: 799,
+    uid: '2',
+    imageProvider: NetworkImage('https://flutter'
+        '.dev/docs/cookbook/img-files/effects/split-check/Food2.jpg'),
+  ),
+  Item(
+    name: 'Chicken Parmesan',
+    totalPriceCents: 1499,
+    uid: '3',
+    imageProvider: NetworkImage('https://flutter'
+        '.dev/docs/cookbook/img-files/effects/split-check/Food3.jpg'),
+  ),
   Item(
     name: 'Spinach Pizza',
     totalPriceCents: 1299,
@@ -108,34 +151,26 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
                     },
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
-                    vertical: 20.0,
-                  ),
-                  child: Row(
-                    children: _people.map(_buildPersonWithDropZone).toList(),
-                  ),
-                ),
               ],
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: Row(
+        children: _people.map(_buildPersonWithDropZone).toList(),
       ),
     );
   }
 
   Widget _buildPersonWithDropZone(Customer customer) {
     return Expanded(
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Start()));
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 6.0,
-          ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Start()));
+          },
           child: DragTarget<Item>(
             builder: (context, candidateItems, rejectedItems) {
               return CustomerCart(
@@ -176,62 +211,66 @@ class CustomerCart extends StatelessWidget {
     return Transform.scale(
       scale: highlighted ? 1.0 : 1.0,
       child: Material(
-        elevation: highlighted ? 8.0 : 4.0,
-        borderRadius: BorderRadius.circular(22.0),
+        //elevation: highlighted ? 3.0 : 0.0,
+        //borderRadius: BorderRadius.circular(22.0),
         color: highlighted ? Colors.orange : Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 12.0,
-            vertical: 24.0,
+            horizontal: 5.0,
+            vertical: 5.0,
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              ClipOval(
-                child: SizedBox(
-                  width: 46,
-                  height: 46,
-                  child: Image(
-                    image: customer.imageProvider,
-                    fit: BoxFit.cover,
+              Positioned(
+                top: 2,
+                right: 5,
+                child: TextButton(
+                  child: const Text("Limpar"),
+                  onPressed: () {},
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(
+                    height: 50,
+                    child: Icon(
+                      LineIcons.blender,
+                      size: 50,
+                      color: Colors.black45,
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                customer.name,
-                style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                      color: textColor,
-                      fontWeight:
-                          hasItems ? FontWeight.normal : FontWeight.bold,
+                  const SizedBox(height: 8.0),
+                  Text(
+                    "segure e arraste as frutas para cá",
+                    style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                          color: Colors.black45,
+                          fontWeight:
+                              hasItems ? FontWeight.normal : FontWeight.bold,
+                        ),
+                  ),
+                  Visibility(
+                    visible: hasItems,
+                    maintainState: true,
+                    maintainAnimation: true,
+                    maintainSize: true,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 4.0),
+                        Text(
+                          '${customer.items.length} fruta${customer.items.length > 1 ? 's' : ''}',
+                          style:
+                              Theme.of(context).textTheme.subtitle1!.copyWith(
+                                    color: textColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12.0,
+                                  ),
+                        ),
+                      ],
                     ),
-              ),
-              Visibility(
-                visible: hasItems,
-                maintainState: true,
-                maintainAnimation: true,
-                maintainSize: true,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 4.0),
-                    Text(
-                      customer.formattedTotalItemPrice,
-                      style: Theme.of(context).textTheme.caption!.copyWith(
-                            color: textColor,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    const SizedBox(height: 4.0),
-                    Text(
-                      '${customer.items.length} fruta${customer.items.length > 1 ? 's' : ''}',
-                      style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                            color: textColor,
-                            fontSize: 12.0,
-                          ),
-                    ),
-                  ],
-                ),
+                  )
+                ],
               )
             ],
           ),
