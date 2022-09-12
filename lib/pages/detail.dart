@@ -13,7 +13,7 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text("Nome da fruta")),
+        appBar: AppBar(title: const Text("Detalhes")),
         body: SingleChildScrollView(
           child: Column(
             children: [
