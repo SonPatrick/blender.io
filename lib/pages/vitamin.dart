@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:blender/pages/detail.dart';
-import 'package:blender/pages/fruits.dart';
 import 'package:blender/pages/vitamin/fruit_model.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';

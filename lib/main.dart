@@ -17,7 +17,7 @@ void main() async {
   );
   runApp(
     MaterialApp(
-      home: const SafeArea(child: Home()), // Login(),
+      home: const Home(), // Login(),
 
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

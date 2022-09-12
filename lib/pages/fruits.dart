@@ -53,19 +53,6 @@ class _StartState extends State<Fruits>
                   );
   }
 
-  void _onDismiss(var direction, int index) {
-    if (direction == DismissDirection.endToStart) {
-      setState(() {
-        _added.add(_fruits.elementAt(index));
-        _fruits.removeAt(index);
-      });
-    } else {
-      setState(() {
-        _fruits.add(_fruits.elementAt(index));
-      });
-    }
-  }
-
   void getFruitIdByInfo() {
     if (mounted) {
       setState(() {

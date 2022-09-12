@@ -35,8 +35,8 @@ class _DetailsState extends State<Details> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Icon(
+                    children: const [
+                      Icon(
                         LineIcons.fruitApple,
                         size: 75,
                         color: Colors.white,
