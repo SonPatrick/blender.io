@@ -18,7 +18,6 @@ void main() async {
   runApp(
     MaterialApp(
       home: const Home(),
-
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
