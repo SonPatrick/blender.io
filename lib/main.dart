@@ -23,8 +23,6 @@ void main() async {
         brightness: Brightness.light,
         primaryColor: Colors.indigo,
         scaffoldBackgroundColor: Colors.white,
-        backgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSwatch(brightness: Brightness.light),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Colors.orange,
           elevation: 0.5,
@@ -56,8 +54,8 @@ void main() async {
           ),
         ),
         textTheme: const TextTheme(
-          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+          displayLarge: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          titleLarge: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
         ),
         timePickerTheme: const TimePickerThemeData(
           dayPeriodColor: Colors.orange,

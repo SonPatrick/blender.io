@@ -43,7 +43,7 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
         iconTheme: const IconThemeData(color: Color(0xFFF64209)),
         title: Text(
           'Vitamina',
-          style: Theme.of(context).textTheme.headline4?.copyWith(
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 fontSize: 32,
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -106,8 +106,7 @@ class _VitaminState extends State<Vitamin> with TickerProviderStateMixin {
         padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
         child: GestureDetector(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Details()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const Details()));
           },
           child: DragTarget<Fruit>(
             builder: (context, candidateItems, rejectedItems) {
@@ -182,10 +181,9 @@ class FruitCart extends StatelessWidget {
                   const SizedBox(height: 8.0),
                   Text(
                     "segure e arraste as frutas para cá",
-                    style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: textColor,
-                          fontWeight:
-                              hasItems ? FontWeight.normal : FontWeight.bold,
+                          fontWeight: hasItems ? FontWeight.normal : FontWeight.bold,
                         ),
                   ),
                   Visibility(
@@ -198,12 +196,11 @@ class FruitCart extends StatelessWidget {
                         const SizedBox(height: 4.0),
                         Text(
                           '${customer.items.length} fruta${customer.items.length > 1 ? 's' : ''}',
-                          style:
-                              Theme.of(context).textTheme.subtitle1!.copyWith(
-                                    color: textColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12.0,
-                                  ),
+                          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                color: textColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.0,
+                              ),
                         ),
                       ],
                     ),
@@ -268,14 +265,14 @@ class MenuListItem extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontSize: 18.0,
                         ),
                   ),
                   const SizedBox(height: 10.0),
                   Text(
                     price,
-                    style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 18.0,
                         ),
@@ -335,8 +332,7 @@ class Customer {
   final List<Fruit> items;
 
   String get formattedTotalItemPrice {
-    final totalPriceCents =
-        items.fold<int>(0, (prev, item) => prev + item.totalPriceCents);
+    final totalPriceCents = items.fold<int>(0, (prev, item) => prev + item.totalPriceCents);
     return '\$${(totalPriceCents / 100.0).toStringAsFixed(2)}';
   }
 }
